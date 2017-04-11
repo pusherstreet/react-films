@@ -188,23 +188,6 @@ var CheckBoxList = React.createClass({
     }
 });
 
-var Switcher = React.createClass({
-
-    shouldComponentUpdate: function(props){
-        return props.checked !== this.props.checked;
-    },
-
-    render: function(){
-        
-        return <div className="switch">
-                    <input type="radio" id="Any" name="switch" checked={this.props.checked} onChange={this.props.changeHandler} value="Any"/>
-                    <label htmlFor="Any">Any</label>
-                    <input type="radio" id="All" name="switch" checked={!this.props.checked} onChange={this.props.changeHandler} value="All"/>
-                    <label htmlFor="All">All</label>  
-                </div>;
-    }
-})
-
 var Film = React.createClass({
 
     render: function () {
@@ -366,7 +349,12 @@ var Films = React.createClass({
                 <div id="settings-container">
                     <YearBar blurHandler={this.changeYears} years={this.state.years}/>
                     <RateBar blurHandler={this.changeRate} rate={this.state.rate}/>
-                    <Switcher changeHandler={this.switcherHandler} checked={this.state.isAny}/>
+                    <div className="switch">
+                    <input type="radio" id="Any" name="switch" checked={this.state.isAny} onChange={this.switcherHandler} value="Any"/>
+                        <label htmlFor="Any">Any</label>
+                        <input type="radio" id="All" name="switch" checked={!this.state.isAny} onChange={this.switcherHandler} value="All"/>
+                        <label htmlFor="All">All</label>  
+                    </div>
                     <button onClick={this.resetHandler} id="reset"><span className="glyphicon glyphicon-repeat"></span></button>
                     <label htmlFor="reset">Reset</label>
                 </div>
