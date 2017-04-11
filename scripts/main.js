@@ -31,7 +31,7 @@ Array.prototype.groupBy = function (selector) {
     }
     return dictionary;
 }
-Array.prototype.intersect = function (arr, selector) {
+Array.prototype.intersect = function (arr) {
 
     return this.reduce(function (resultArray, current) {    
         
