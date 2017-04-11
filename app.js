@@ -170,6 +170,7 @@ var Films = React.createClass({
         isAny: true
     },
 
+
     getInitialState: function () {
         if (localStorage[this.STORAGE]) {
             return JSON.parse(localStorage[this.STORAGE]);
@@ -208,11 +209,14 @@ var Films = React.createClass({
             }
 
         }.bind(this);
+
+        this.prevGenres = ["All"];
     },
 
 
     handleFilter: function (event) {
         let genres = this.state.genres;
+        this.prevGenres = genres;
         if (event.target.checked) {
             if (genres.indexOf(event.target.value) == -1) {
                 genres.push(event.target.value);
@@ -228,9 +232,10 @@ var Films = React.createClass({
         this.setState({ genres: genres });
     },
 
-    resetCheckboxes: function (prevGenres, e) {
+    resetCheckboxes: function (e) {
         if (!e.target.checked) {
-            this.setState({ genres: prevGenres });
+            console.log(false);
+            this.setState({ genres: this.prevGenres});
         }
         else {
             this.setState({ genres: ["All"] });
@@ -262,6 +267,7 @@ var Films = React.createClass({
         var filmsList = [];
 
         if (this.state.isLoaded) {
+            console.log(this.state.rate.max);
             // filter films
             // filter by genres
             let filteredFilms = this.state.genres.length > 1 ? this.allFilms.filter(function (el) {
@@ -270,22 +276,35 @@ var Films = React.createClass({
                 }
                 return el.Genres.intersect(this.state.genres).length === this.state.genres.length - 1;
             }, this).groupBy(x => x.Year) : this.allFilms.groupBy(x => x.Year);
-            console.log(filteredFilms);
+
             var props = Object.keys(filteredFilms)
                 .filter(x => parseInt(x) >= this.state.years.left && parseInt(x) <= this.state.years.right) // filter by years
-                .filter(x => filteredFilms[x].some(film => film.IMDB >= this.state.rate.min && film.IMDB <= this.state.rate.max)) // if years has films
                 .sort(function (a, b) { return b - a; });
 
             props.forEach(function (key) {
-                    filmsList.push(<FilmsList key={key} year={key} genres={this.state.genres} films={filteredFilms[key]} />);
+                    const films = filteredFilms[key].filter(x => x.IMDB >= this.state.rate.min && x.IMDB <= this.state.rate.max)
+                    if(films.length !== 0)
+                    {
+                        filmsList.push(<FilmsList key={key} year={key} genres={this.state.genres} films={films} />);
+                    }
+                    
             }, this);
             //
 
             return (
                 <div>
-
+                    
                     <div className="genres">
+                        <div key="All">
+                                        <label className='btn btn-default'>
+                                            <input id="All" type="checkbox" autoComplete="off"
+                                                onChange={this.resetCheckboxes} checked={(this.state.genres.length == 1)} name="genres" value="All" />
+                                            <span className={"glyphicon glyphicon-ok " + (this.state.genres.length == 1 ? "active":"")}></span>
+                                        </label>
+                                        <label className="label-name" style={{ color: "black" }} htmlFor="All">All</label>
+                        </div>
                         {
+
                             genres.map(function (el) {
 
                                 const checked = this.state.genres.find(function (genre) { return genre === el.name }) ? true : false;
