@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Crime",
+    "color": "red"
+  },
+  {
+    "name": "Drama",
+    "color": "green"
+  },
+  {
+    "name": "Action",
+    "color": "blue"
+  },
+  {
+    "name": "Adventure",
+    "color": "crimson"
+  },
+
+  {
+    "name": "Sci-Fi",
+    "color": "gold"
+  },
+  {
+    "name": "Comedy",
+    "color": "aqua"
+  },
+  {
+    "name": "Romance",
+    "color": "yellow"
+  },
+  {
+    "name": "Fantasy",
+    "color": "violet"
+  },
+  {
+    "name": "Thriller",
+    "color": "tomato"
+  },
+  {
+    "name": "Mystery",
+    "color": "teal"
+  },
+  {
+    "name": "Western",
+    "color": "tan"
+  },
+  {
+    "name": "War",
+    "color": "slateblue"
+  },
+  {
+    "name": "Biography",
+    "color": "skyblue"
+  },
+  {
+    "name": "History",
+    "color": "yellowgreen"
+  },
+  {
+    "name": "Animation",
+    "color": "indigo"
+  },
+  {
+    "name": "Family",
+    "color": "darkorange"
+  },
+  {
+    "name": "Horror",
+    "color": "darkred"
+  },
+  {
+    "name": "Sport",
+    "color": "orange"
+  },
+  {
+    "name": "Music",
+    "color": "lime"
+  },
+  {
+    "name": "Musical",
+    "color": "#ff558a"
+  },
+  {
+    "name": "Film-Noir",
+    "color": "chocolate"
+  }
+]
