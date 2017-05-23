@@ -6,7 +6,7 @@ var Bar = React.createClass({
         return <div className="bar">
             {
                 this.props.genres.map(function (el) {
-                    return <div key={el.name} className="point" style={{ width: pointWidth, background: genres.find(x => x.name == el).color }}>
+                    return <div key={el.name} key={el.name} className="point" style={{ width: pointWidth, background: genres.find(x => x.name == el).color }}>
 
                     </div>
                 })
@@ -158,7 +158,7 @@ var FilmsList = React.createClass({
     }
 });
 
-var Films = React.createClass({
+var App = React.createClass({
 
     STORAGE: 'filmsSettings',
 
@@ -346,4 +346,4 @@ var Films = React.createClass({
 
 });
 
-ReactDOM.render(<Films />, document.getElementById('container'));
+ReactDOM.render(<App />, document.getElementById('container'));
